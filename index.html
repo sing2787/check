@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>APOD Search – NASA Astronomy Picture of the Day</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Google Fonts: Inter (closest web equivalent to Canva Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header class="site-header">
+      <span class="site-logo">APOD Search</span>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <h1 class="hero-title">Discover the Universe, One day at a time</h1>
+    </section>
+
+    <!-- ===== SEARCH BAR ===== -->
+    <div class="search-bar-wrapper">
+      <div class="search-bar">
+        <input
+          type="text"
+          id="date-input"
+          class="date-input"
+          placeholder="Enter a date (YYYY-MM-DD)"
+          maxlength="10"
+          aria-label="Enter a date in YYYY-MM-DD format"
+        />
+        <button class="btn btn-primary" id="search-btn" aria-label="Search APOD">
+          Search APOD
+        </button>
+      </div>
+    </div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content">
+      <!-- APOD Display Card -->
+      <section class="apod-card" aria-label="Astronomy Picture of the Day">
+        <div class="apod-image-wrapper" id="apod-image-wrapper">
+          <div class="apod-placeholder" id="apod-placeholder">
+            <span>[Astronomy Picture of the Day]</span>
+          </div>
+          <img
+            id="apod-img"
+            class="apod-img hidden"
+            src=""
+            alt="Astronomy Picture of the Day"
+          />
+          <!-- Video embed placeholder -->
+          <div id="apod-video-wrapper" class="apod-video-wrapper hidden">
+            <iframe
+              id="apod-video"
+              class="apod-video"
+              src=""
+              title="APOD Video"
+              allowfullscreen
+              frameborder="0"
+            ></iframe>
+          </div>
+        </div>
+
+        <div class="apod-meta" id="apod-meta">
+          <div class="apod-info">
+            <p class="apod-title" id="apod-title">–</p>
+            <p class="apod-date" id="apod-date">–</p>
+          </div>
+          <button
+            class="btn btn-success"
+            id="fav-btn"
+            aria-label="Save as Favourite"
+            disabled
+          >
+            Save as Favourite
+          </button>
+        </div>
+
+        <p class="apod-explanation" id="apod-explanation"></p>
+
+        <!-- Status / Error messages -->
+        <p class="status-msg" id="status-msg" aria-live="polite"></p>
+      </section>
+
+      <!-- Favourites Panel -->
+      <aside class="favourites-panel" aria-label="Favourites">
+        <h2 class="favourites-heading">Favourites</h2>
+        <ul class="favourites-list" id="favourites-list" aria-label="Saved favourites">
+          <!-- Items injected by script.js -->
+        </ul>
+        <div class="favourites-more-wrapper" id="more-btn-wrapper" hidden>
+          <button class="btn btn-success btn-more" id="more-btn">More</button>
+        </div>
+        <p class="favourites-empty" id="fav-empty">No favourites saved yet.</p>
+      </aside>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+      <p>
+        Powered by the
+        <a
+          href="https://api.nasa.gov/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >NASA APOD API</a
+        >
+        &nbsp;|&nbsp; Images &amp; text © NASA / respective authors
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

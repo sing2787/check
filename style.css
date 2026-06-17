@@ -1,0 +1,480 @@
+/* =========================================================
+   APOD Search – style.css
+   Colour Palette (from mockup):
+     Background  : #0B0D17
+     Card bg     : #161B2E
+     Blue accent : #4F8EF7
+     Green       : #3DBE7A
+     Red         : #E05252
+     Gold        : #E8A850   (favourites label warm amber)
+   ========================================================= */
+
+/* ---- Reset & Base ---- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-deep:    #0B0D17;
+  --bg-card:    #161B2E;
+  --bg-card-2:  #1c2240;
+  --blue:       #4F8EF7;
+  --green:      #3DBE7A;
+  --red:        #E05252;
+  --gold:       #E8A850;
+  --white:      #FFFFFF;
+  --muted:      #9aa3be;
+  --radius-pill: 999px;
+  --radius-card: 12px;
+  --transition:  0.2s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  background-color: var(--bg-deep);
+  color: var(--white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Utility ---- */
+.hidden {
+  display: none !important;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+.site-header {
+  padding: 20px 32px;
+  display: flex;
+  align-items: center;
+}
+
+.site-logo {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--blue);
+  letter-spacing: -0.3px;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero {
+  text-align: center;
+  padding: 4px 16px 20px;
+}
+
+.hero-title {
+  font-size: clamp(20px, 4vw, 36px);
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.3;
+}
+
+/* =========================================================
+   SEARCH BAR
+   ========================================================= */
+.search-bar-wrapper {
+  width: 100%;
+  padding: 0 24px 28px;
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 960px;
+}
+
+.date-input {
+  flex: 1;
+  padding: 14px 22px;
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--white);
+  background-color: var(--bg-card);
+  border: 2px solid var(--blue);
+  border-radius: var(--radius-pill);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.date-input::placeholder {
+  color: var(--muted);
+}
+
+.date-input:focus {
+  border-color: #7aadff;
+  box-shadow: 0 0 0 3px rgba(79, 142, 247, 0.25);
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: filter var(--transition), transform var(--transition);
+  line-height: 1;
+}
+
+.btn:hover:not(:disabled) {
+  filter: brightness(1.12);
+  transform: translateY(-1px);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background-color: var(--blue);
+  color: var(--white);
+  padding: 14px 28px;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.btn-success {
+  background-color: var(--green);
+  color: var(--white);
+}
+
+.btn-danger {
+  background-color: var(--red);
+  color: var(--white);
+  padding: 8px 18px;
+  font-size: 13px;
+}
+
+.btn-more {
+  padding: 10px 22px;
+}
+
+/* =========================================================
+   MAIN CONTENT GRID
+   ========================================================= */
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 20px;
+  padding: 0 24px 40px;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  flex: 1;
+}
+
+/* =========================================================
+   APOD CARD (left column)
+   ========================================================= */
+.apod-card {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Image / Placeholder area */
+.apod-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, #0a0e2a 0%, #1a1060 50%, #2b0080 100%);
+  overflow: hidden;
+}
+
+.apod-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 16px;
+  text-align: center;
+  padding: 16px;
+}
+
+.apod-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.apod-video-wrapper {
+  position: absolute;
+  inset: 0;
+}
+
+.apod-video {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Meta row (title + date + button) */
+.apod-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px 8px;
+  flex-wrap: wrap;
+}
+
+.apod-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.apod-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.apod-date {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* Explanation */
+.apod-explanation {
+  padding: 0 18px 18px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: #c8cfdf;
+}
+
+/* Status message */
+.status-msg {
+  padding: 0 18px 14px;
+  font-size: 13px;
+  color: var(--red);
+  min-height: 18px;
+}
+
+/* =========================================================
+   FAVOURITES PANEL (right column)
+   ========================================================= */
+.favourites-panel {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-card);
+  padding: 20px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-self: start;
+}
+
+.favourites-heading {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.favourites-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Individual favourite item */
+.fav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: var(--bg-card-2);
+  border-radius: 10px;
+  padding: 10px 10px 10px 12px;
+  transition: background-color var(--transition);
+}
+
+.fav-item:hover {
+  background-color: #222b50;
+}
+
+.fav-thumb {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  object-fit: cover;
+  background-color: #2a3055;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 11px;
+  overflow: hidden;
+}
+
+.fav-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.fav-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.fav-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fav-date {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.fav-del-btn {
+  flex-shrink: 0;
+}
+
+.favourites-more-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+.favourites-empty {
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+  padding: 8px 0;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.site-footer {
+  text-align: center;
+  padding: 18px 16px;
+  font-size: 12px;
+  color: var(--muted);
+  border-top: 1px solid #1e2540;
+}
+
+.site-footer a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   RESPONSIVE – Tablet (≤ 900px)
+   ========================================================= */
+@media (max-width: 900px) {
+  .main-content {
+    grid-template-columns: 1fr;
+    padding: 0 16px 32px;
+  }
+
+  .favourites-panel {
+    max-height: none;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE – Mobile (≤ 600px)
+   ========================================================= */
+@media (max-width: 600px) {
+  .site-header {
+    padding: 16px 16px;
+  }
+
+  .search-bar-wrapper {
+    padding: 0 16px 20px;
+  }
+
+  .search-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-primary {
+    width: 100%;
+    padding: 14px 16px;
+  }
+
+  .apod-image-wrapper {
+    aspect-ratio: 4 / 3;
+  }
+
+  .apod-meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn-success {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: 20px;
+  }
+
+  .site-logo {
+    font-size: 18px;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY – Reduced motion
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
